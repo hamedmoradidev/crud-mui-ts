@@ -37,6 +37,11 @@ export default function EditModal() {
     enabled: !!postId,
     refetchOnWindowFocus: false,
   });
+  useEffect(() => {
+    if (data) {
+      setCurrentPost(data);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (!postId) return;
@@ -123,7 +128,7 @@ export default function EditModal() {
                 id="outlined-helperText"
                 label="user id"
                 name="userId"
-                value={data.userId}
+                value={currentPost.userId}
                 onChange={handleChange}
                 error={!!errors.userId}
                 helperText={errors.userId}
@@ -132,7 +137,7 @@ export default function EditModal() {
                 id="outlined-helperText"
                 label="id"
                 name="id"
-                value={data.id}
+                value={currentPost.id}
                 onChange={handleChange}
                 error={!!errors.id}
                 helperText={errors.id}
@@ -141,7 +146,7 @@ export default function EditModal() {
                 id="outlined-helperText"
                 label="title"
                 name="title"
-                value={data.title}
+                value={currentPost.title}
                 onChange={handleChange}
                 error={!!errors.title}
                 helperText={errors.title}
@@ -150,7 +155,7 @@ export default function EditModal() {
                 id="outlined-helperText"
                 label="body"
                 name="body"
-                value={data.body}
+                value={currentPost.body}
                 onChange={handleChange}
                 error={!!errors.body}
                 helperText={errors.body}
